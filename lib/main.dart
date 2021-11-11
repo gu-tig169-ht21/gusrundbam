@@ -100,17 +100,20 @@ class AddTodo extends StatelessWidget {
   }
 
   Widget _todoInputField() {
-    return Stack(children: [
-      Container(
+    return Stack(
+      children: [
+        Container(
           margin: const EdgeInsets.only(left: 16, right: 16, top: 24),
           child: const TextField(
 //              textAlign: TextAlign.center,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              hintText: 'What are you going to do?',
+              hintText: 'What are you going to do??',
             ),
-          )),
-    ]);
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _addBox() {

@@ -104,12 +104,14 @@ class AddTodo extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.only(left: 16, right: 16, top: 24),
-          child: 
-          const TextField(
+          child: const TextField(
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: 'What are you going to do?',
-              contentPadding: EdgeInsets.only(left: 24, right: 24,),
+              contentPadding: EdgeInsets.only(
+                left: 24,
+                right: 24,
+              ),
             ),
           ),
         ),
@@ -125,9 +127,8 @@ class AddTodo extends StatelessWidget {
             icon: const Icon(Icons.add),
             onPressed: () {},
             label: const Text('ADD',
-               style: TextStyle(decorationThickness: 5, fontSize: 18)
-            ))
-        ],
+                style: TextStyle(decorationThickness: 5, fontSize: 18)))
+      ],
     );
   }
 }

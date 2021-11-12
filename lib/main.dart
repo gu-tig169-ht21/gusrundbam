@@ -94,7 +94,7 @@ class AddTodo extends StatelessWidget {
             child: Column(children: [
           Container(height: 18),
           _todoInputField(),
-          Container(height: 50),
+          Container(height: 30),
           _addBox(),
         ])));
   }
@@ -104,11 +104,12 @@ class AddTodo extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.only(left: 16, right: 16, top: 24),
-          child: const TextField(
-//              textAlign: TextAlign.center,
+          child: 
+          const TextField(
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              hintText: 'What are you going to do??',
+              hintText: 'What are you going to do?',
+              contentPadding: EdgeInsets.only(left: 24, right: 24,),
             ),
           ),
         ),
@@ -123,8 +124,10 @@ class AddTodo extends StatelessWidget {
         ElevatedButton.icon(
             icon: const Icon(Icons.add),
             onPressed: () {},
-            label: const Text('ADD', style: TextStyle(decorationThickness: 5)))
-      ],
+            label: const Text('ADD',
+               style: TextStyle(decorationThickness: 5, fontSize: 18)
+            ))
+        ],
     );
   }
 }

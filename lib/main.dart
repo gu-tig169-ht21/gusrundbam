@@ -48,12 +48,19 @@ class HomePage extends StatelessWidget {
     return ListView(children: <Widget>[
       Container(height: 24),
       _item(false, 'Write a book'),
+      const Divider(),
       _item(true, 'Do homework'),
+      const Divider(),
       _item(false, 'Tidy room'),
+      const Divider(),
       _item(false, 'Watch TV'),
+      const Divider(),
       _item(false, 'Nap'),
+      const Divider(),
       _item(false, 'Shop groceries'),
+      const Divider(),
       _item(false, 'Have fun'),
+      const Divider(),
       _item(false, 'Meditate'),
     ]);
   }
@@ -132,4 +139,3 @@ class AddTodo extends StatelessWidget {
     );
   }
 }
-

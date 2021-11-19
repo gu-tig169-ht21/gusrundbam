@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
               const PopupMenuItem(child: Text('All'), value: 1),
               const PopupMenuItem(child: Text('Done'), value: 2),
               const PopupMenuItem(child: Text('Undone'), value: 3)
-            ]); // kan man ändra bakgrundsfärg när den är vald?
+            ]);
   }
 
   Widget _floatingActionButton(context) {

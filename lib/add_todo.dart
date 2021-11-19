@@ -20,7 +20,6 @@ class _AddTodoState extends State<AddTodo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.teal[80],
         appBar: AppBar(
           title: const Text('Add TODO'),
           centerTitle: true,
@@ -54,10 +53,10 @@ class _AddTodoState extends State<AddTodo> {
               },
               controller: _textController,
               decoration: const InputDecoration(
-                  // label: Text(
-                  //   'Add Todo',
-                  //   style: TextStyle(fontWeight: FontWeight.w500),
-                  // ),
+                  label: Text(
+                    'Add todo...',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
                   border: OutlineInputBorder(),
                   hintText: 'What are you trying to do?',
                   contentPadding: EdgeInsets.only(

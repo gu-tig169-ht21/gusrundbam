@@ -21,7 +21,7 @@ class _AddTodoState extends State<AddTodo> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Add TODO'),
+          title: const Text('Lägg till uppgift'),
           centerTitle: true,
         ),
         body: Center(
@@ -54,11 +54,14 @@ class _AddTodoState extends State<AddTodo> {
               controller: _textController,
               decoration: const InputDecoration(
                   label: Text(
-                    'Add todo...',
-                    style: TextStyle(fontWeight: FontWeight.w500),
+                    'Att göra...',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 17,
+                        fontStyle: FontStyle.italic),
                   ),
                   border: OutlineInputBorder(),
-                  hintText: 'What are you trying to do?',
+                  hintText: 'Vad vill du göra?',
                   contentPadding: EdgeInsets.only(
                     left: 24,
                     right: 24,
@@ -70,7 +73,7 @@ class _AddTodoState extends State<AddTodo> {
     return ElevatedButton.icon(
         icon: const Icon(Icons.add),
         label: const Text(
-          'ADD',
+          'Lägg till',
           style: TextStyle(fontSize: 18),
         ),
         onPressed: () {

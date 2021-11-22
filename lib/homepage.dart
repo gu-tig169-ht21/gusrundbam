@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TODO List'),
+        title: const Text('Att göra-lista'),
         centerTitle: true,
         actions: [_filterButton(context)],
       ),
@@ -26,9 +26,9 @@ class HomePage extends StatelessWidget {
           state.setFilterby(value);
         },
         itemBuilder: (context) => [
-              const PopupMenuItem(child: Text('All'), value: 1),
-              const PopupMenuItem(child: Text('Done'), value: 2),
-              const PopupMenuItem(child: Text('Undone'), value: 3)
+              const PopupMenuItem(child: Text('Alla'), value: 1),
+              const PopupMenuItem(child: Text('Gjorda'), value: 2),
+              const PopupMenuItem(child: Text('Kvar att göra'), value: 3)
             ]);
   }
 

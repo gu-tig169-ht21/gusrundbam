@@ -8,21 +8,13 @@ var apiKey = 'a863f05a-d76f-4ddd-8fb4-22f974d3b712';
 class ApiResponse {
   Future<List<Todo>> getTodos() async {
     var response = await get(Uri.parse('$apiLink/todos?key=$apiKey'));
-    if (response.statusCode == 200) {
-      return json(response);
-    } else {
-      throw Exception('Kunde inte ladda listan');
-    }
+    return json(response);
   }
 
   Future<List<Todo>> postTodo(Todo todo) async {
     Response response = await post(Uri.parse('$apiLink/todos?key=$apiKey'),
         headers: {"Content-Type": "application/json"}, body: jsonEncode(todo));
-    if (response.statusCode == 201) {
-      return json(response);
-    } else {
-      throw Exception('Kunde inte lägga till uppgift');
-    }
+    return json(response);
   }
 
   Future<List<Todo>> updateTodo(Todo todo) async {
@@ -30,21 +22,13 @@ class ApiResponse {
         Uri.parse('$apiLink/todos/${todo.id}?key=$apiKey'),
         headers: {'Content-Type': "application/json"},
         body: jsonEncode(todo));
-    if (response.statusCode == 200) {
-      return json(response);
-    } else {
-      throw Exception('Kunde inte ändra uppgift');
-    }
+    return json(response);
   }
 
   Future<List<Todo>> deleteTodo(Todo todo) async {
     Response response =
         await delete(Uri.parse('$apiLink/todos/${todo.id}?key=$apiKey'));
-    if (response.statusCode == 200) {
-      return json(response);
-    } else {
-      throw Exception('Kunde inte ta bort uppgift');
-    }
+    return json(response);
   }
 
   List<Todo> json(response) {

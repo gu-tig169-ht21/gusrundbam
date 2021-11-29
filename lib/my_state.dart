@@ -27,24 +27,22 @@ class MyState with ChangeNotifier {
     return _todoList;
   }
 
-  var api = ApiResponse();
-
   void getList() async {
-    List<Todo> todoList = await api.getTodos();
+    List<Todo> todoList = await ApiResponse().getTodos();
     _todoList = todoList;
     notifyListeners();
   }
 
   void isDone(Todo todo) async {
-    _setList(await api.updateTodo(todo));
+    _setList(await ApiResponse().updateTodo(todo));
   }
 
   void addTodo(Todo todo) async {
-    var result = await api.postTodo(todo);
+    var result = await ApiResponse().postTodo(todo);
     _setList(result);
   }
 
   void deleteTodo(Todo todo) async {
-    _setList(await api.deleteTodo(todo));
+    _setList(await ApiResponse().deleteTodo(todo));
   }
 }

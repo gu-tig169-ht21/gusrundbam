@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'main.dart';
+import 'my_state.dart';
 
 class TodoList extends StatelessWidget {
   const TodoList({Key? key, required this.list}) : super(key: key);
 
   final List<Todo> list;
-
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    var state = Provider.of<MyState>(context, listen: false);
+    return RefreshIndicator(
+      onRefresh: () async {
+        state.getList();
+      },
+      child: ListView.builder(
         itemCount: list.length,
         itemBuilder: (context, index) {
           return _item(context, list[index]);
-        });
+        },
+      ),
+    );
   }
 }
 
@@ -22,67 +28,50 @@ Widget _item(context, Todo todo) {
   return Padding(
     padding: const EdgeInsets.only(top: 3, left: 8, right: 8),
     child: Card(
-        margin: const EdgeInsets.only(top: 7),
-        child: CheckboxListTile(
-          title: Text(
-            todo.text,
-            style: TextStyle(
-              fontSize: 20,
-              decoration: todo.isDone ? TextDecoration.lineThrough : null,
-              color: todo.isDone ? Colors.black54 : null,
-            ),
+      margin: const EdgeInsets.only(top: 7),
+      child: CheckboxListTile(
+        title: Text(
+          todo.text,
+          style: TextStyle(
+            fontSize: 20,
+            decoration: todo.isDone ? TextDecoration.lineThrough : null,
+            color: todo.isDone ? Colors.black54 : null,
           ),
-          secondary: IconButton(
-              icon: const Icon(
-                Icons.cancel_outlined,
-              ),
-              onPressed: () {
-                state.deleteTodo(todo);
-              }),
-          tileColor: todo.isDone ? Colors.grey[350] : null,
-          controlAffinity: ListTileControlAffinity.leading,
-          value: todo.isDone,
-          onChanged: (value) {
-            state.isDone(todo);
-          },
-        )),
+        ),
+        secondary: IconButton(
+            icon: const Icon(
+              Icons.cancel_outlined,
+            ),
+            onPressed: () {
+              state.deleteTodo(todo);
+            }),
+        tileColor: todo.isDone ? Colors.grey[350] : null,
+        controlAffinity: ListTileControlAffinity.leading,
+        value: todo.isDone,
+        onChanged: (value) {
+          todo.isDone = !todo.isDone;
+          state.isDone(todo);
+        },
+      ),
+    ),
   );
 }
 
-class MyState with ChangeNotifier {
-  List<Todo> todoList = [];
-  int _filterBy = 3;
+class Todo {
+  String text;
+  bool isDone;
+  String id;
 
-  List<Todo> get list => todoList;
+  Todo({required this.text, required this.isDone, this.id = ''});
+  factory Todo.fromJson(Map<dynamic, dynamic> json) => Todo(
+        id: json['id'],
+        text: json['title'],
+        isDone: json['done'],
+      );
 
-  int get filterBy => _filterBy;
-
-  void setFilterby(int filterBy) {
-    _filterBy = filterBy;
-    notifyListeners();
-  }
-
-  List<Todo> filterList(list, value) {
-    if (value == 2) {
-      return todoList.where((todo) => todo.isDone == true).toList();
-    } else if (value == 3) {
-      return todoList.where((todo) => todo.isDone == false).toList();
-    }
-    return todoList;
-  }
-
-  void isDone(Todo todo) {
-    todo.toggleCheckbox(todo);
-    notifyListeners();
-  }
-
-  void addTodo(Todo todo) {
-    todoList.add(todo);
-    notifyListeners();
-  }
-
-  void deleteTodo(Todo todo) {
-    todoList.remove(todo);
-    notifyListeners();
+  Map<String, dynamic> toJson() => {"id": id, "title": text, "done": isDone};
+  @override
+  String toString() {
+    return "{id: $id title: $text}";
   }
 }

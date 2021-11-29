@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'my_state.dart';
 import 'todo_list.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Provider.of<MyState>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TODO List'),
+        title: const Text('Att göra-lista'),
         centerTitle: true,
         actions: [_filterButton(context)],
       ),
@@ -26,9 +28,9 @@ class HomePage extends StatelessWidget {
           state.setFilterby(value);
         },
         itemBuilder: (context) => [
-              const PopupMenuItem(child: Text('All'), value: 1),
-              const PopupMenuItem(child: Text('Done'), value: 2),
-              const PopupMenuItem(child: Text('Undone'), value: 3)
+              const PopupMenuItem(child: Text('Alla'), value: 1),
+              const PopupMenuItem(child: Text('Gjorda'), value: 2),
+              const PopupMenuItem(child: Text('Kvar att göra'), value: 3)
             ]);
   }
 

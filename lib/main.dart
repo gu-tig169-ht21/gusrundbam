@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'add_todo.dart';
 import 'homepage.dart';
-import 'todo_list.dart';
+import 'my_state.dart';
 
 void main() {
   var state = MyState();
-  runApp(ChangeNotifierProvider(
+  state.getList();
+  runApp(
+    ChangeNotifierProvider(
       create: (context) => state,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
           '/': (context) => const HomePage(),
@@ -16,16 +19,7 @@ void main() {
         },
         title: 'Todo app',
         theme: ThemeData(primarySwatch: Colors.teal),
-      )));
-}
-
-class Todo {
-  String text;
-  bool isDone;
-
-  Todo({required this.text, this.isDone = false});
-
-  void toggleCheckbox(todo) {
-    isDone = !isDone;
-  }
+      ),
+    ),
+  );
 }

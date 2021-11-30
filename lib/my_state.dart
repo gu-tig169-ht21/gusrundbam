@@ -33,6 +33,7 @@ class MyState with ChangeNotifier {
     notifyListeners();
   }
 
+
   void isDone(Todo todo) async {
     _setList(await ApiResponse().updateTodo(todo));
   }
@@ -40,6 +41,10 @@ class MyState with ChangeNotifier {
   void addTodo(Todo todo) async {
     var result = await ApiResponse().postTodo(todo);
     _setList(result);
+  }
+
+  void isDone(Todo todo) async {
+    _setList(await ApiResponse().updateTodo(todo));
   }
 
   void deleteTodo(Todo todo) async {

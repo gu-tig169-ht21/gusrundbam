@@ -17,7 +17,7 @@ void main() {
           '/': (context) => const HomePage(),
           '/add_todo': (context) => const AddTodo(),
         },
-        title: 'Todo app',
+        title: 'Todo App',
         theme: ThemeData(primarySwatch: Colors.teal),
       ),
     ),
